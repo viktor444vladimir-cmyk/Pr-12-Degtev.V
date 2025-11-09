@@ -1,0 +1,38 @@
+using System;
+
+public class Calculator
+{
+    public static double Add(double a, double b)
+    {
+        return a + b;
+    }
+    public static double Subtract(double a, double b)
+    {
+        return a - b;
+    }
+    public static double Multiply(double a, double b)
+    {
+        return a * b;
+    }
+    public static double Divide(double a, double b)
+    {
+        if (b == 0)
+        {
+            throw new DivideByZeroException("Ошибка: Деление на ноль невозможно!");
+        }
+        return a / b;
+    }
+
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Сложение: 5 + 3 = " + Calculator.Add(5, 3));
+        Console.WriteLine("Вычитание: 10 - 4 = " + Calculator.Subtract(10, 4));
+        Console.WriteLine("Умножение: 6 * 7 = " + Calculator.Multiply(6, 7));
+        Console.WriteLine("Деление: 15 / 3 = " + Calculator.Divide(15, 3));
+
+        try
+        {
+            Console.WriteLine("Деление на ноль: 8 / 0 = " + Calculator.Divide(8, 0));
+        }
+        catch (DivideByZeroException e)
+        {
