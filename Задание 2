@@ -1,0 +1,24 @@
+using System;
+
+public class ProgramConfig
+{
+    
+    public const string Version = "1.0.0";
+    public const string DeveloperName = "Иван Иванов";
+
+    public static void DisplayProgramInfo()
+    {
+        Console.WriteLine("=== Информация о программе ===");
+        Console.WriteLine($"Версия программы: {Version}");
+        Console.WriteLine($"Разработчик: {DeveloperName}");
+        Console.WriteLine("===============================");
+    }
+
+    public static void Main(string[] args)
+    {
+        ProgramConfig.DisplayProgramInfo();
+
+        Console.WriteLine($"Прямой доступ к версии: {ProgramConfig.Version}");
+        Console.WriteLine($"Прямой доступ к разработчику: {ProgramConfig.DeveloperName}");
+    }
+}
