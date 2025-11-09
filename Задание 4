@@ -1,0 +1,67 @@
+using System;
+
+public class Book
+{
+  
+    private readonly string isbn;
+
+    public string Title { get; set; }
+    public string Author { get; set; }
+
+    public Book(string isbn, string title, string author)
+    {
+        this.isbn = isbn;
+        Title = title;
+        Author = author;
+    }
+
+    public string ISBN
+    {
+        get { return isbn; }
+    }
+
+    public void DisplayBookInfo()
+    {
+        Console.WriteLine("=== Информация о книге ===");
+        Console.WriteLine($"ISBN: {ISBN}");
+        Console.WriteLine($"Название: {Title}");
+        Console.WriteLine($"Автор: {Author}");
+        Console.WriteLine("===========================");
+    }
+
+    public override string ToString()
+    {
+        return $"Книга: '{Title}' (Автор: {Author}, ISBN: {ISBN})";
+    }
+
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("=== Демонстрация работы класса Book ===\n");
+
+        Book book1 = new Book("978-5-699-12014-7", "Мастер и Маргарита", "Михаил Булгаков");
+        Book book2 = new Book("978-5-17-087888-8", "Преступление и наказание", "Федор Достоевский");
+        Book book3 = new Book("978-5-389-08245-8", "1984", "Джордж Оруэлл");
+
+        book1.DisplayBookInfo();
+        book2.DisplayBookInfo();
+        book3.DisplayBookInfo();
+
+        Console.WriteLine("\n=== Использование ToString() ===");
+        Console.WriteLine(book1);
+        Console.WriteLine(book2);
+        Console.WriteLine(book3);
+
+        Console.WriteLine("\n=== Изменение названия книги ===");
+        Console.WriteLine($"До изменения: {book1.Title}");
+        book1.Title = "Мастер и Маргарита (полная версия)";
+        Console.WriteLine($"После изменения: {book1.Title}");
+        book1.DisplayBookInfo();
+
+        Console.WriteLine("\n=== Попытка изменения ISBN ===");
+        Console.WriteLine($"ISBN книги: {book1.ISBN}");
+
+
+        Console.WriteLine("Попытка изменения ISBN через свойство или поле приведет к ошибке компиляции!");
+        Console.WriteLine("ISBN остается неизменным: " + book1.ISBN);
+    }
+}
