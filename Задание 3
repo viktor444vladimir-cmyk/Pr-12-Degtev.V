@@ -1,0 +1,62 @@
+using System;
+
+public class ObjectCounter
+{
+    private static int count = 0;
+
+    private int id;
+
+    public ObjectCounter()
+    {
+        count++;
+        id = count;
+        Console.WriteLine($"Создан объект №{id}");
+    }
+
+    public static void DisplayObjectCount()
+    {
+        Console.WriteLine($"Текущее количество созданных объектов: {count}");
+    }
+
+    public static int Count
+    {
+        get { return count; }
+    }
+
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Я объект №{id}");
+    }
+
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("=== Демонстрация работы счетчика объектов ===");
+
+        ObjectCounter.DisplayObjectCount();
+        Console.WriteLine();
+
+        Console.WriteLine("Создаем первый объект:");
+        ObjectCounter obj1 = new ObjectCounter();
+        ObjectCounter.DisplayObjectCount();
+        Console.WriteLine();
+
+        Console.WriteLine("Создаем второй объект:");
+        ObjectCounter obj2 = new ObjectCounter();
+        ObjectCounter.DisplayObjectCount();
+        Console.WriteLine();
+
+        
+        Console.WriteLine("Создаем третий объект:");
+        ObjectCounter obj3 = new ObjectCounter();
+        ObjectCounter.DisplayObjectCount();
+        Console.WriteLine();
+
+        Console.WriteLine("Информация об объектах:");
+        obj1.DisplayInfo();
+        obj2.DisplayInfo();
+        obj3.DisplayInfo();
+        Console.WriteLine();
+
+        Console.WriteLine($"Итоговое количество объектов (через свойство): {ObjectCounter.Count}");
+    }
+}
