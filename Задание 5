@@ -1,0 +1,134 @@
+using System;
+
+public class Settings
+{
+    private static readonly string configFilePath;
+
+    static Settings()
+    {
+        configFilePath = "C:\\ProgramData\\MyApp\\config.xml";
+        Console.WriteLine("Статический конструктор Settings выполнен.");
+    }
+
+    public static void DisplayConfigPath()
+    {
+        Console.WriteLine($"Путь к файлу конфигурации: {configFilePath}");
+    }
+
+    public static string ConfigFilePath
+    {
+        get { return configFilePath; }
+    }
+}
+
+public class Calculator
+{
+    public const string Version = "1.0.0";
+    public const string DeveloperName = "Иван Иванов";
+
+    public static void DisplayProgramInfo()
+    {
+        Console.WriteLine("=== Информация о программе ===");
+        Console.WriteLine($"Версия программы: {Version}");
+        Console.WriteLine($"Разработчик: {DeveloperName}");
+        Console.WriteLine("===============================");
+    }
+}
+
+public class ObjectCounter
+{
+    private static int count = 0;
+
+    private int id;
+
+    public ObjectCounter()
+    {
+        count++;
+        id = count;
+        Console.WriteLine($"Создан объект №{id}");
+    }
+
+    public static void DisplayObjectCount()
+    {
+        Console.WriteLine($"Текущее количество созданных объектов: {count}");
+    }
+
+    public static int Count
+    {
+        get { return count; }
+    }
+}
+
+public class Book
+{
+    private readonly string isbn;
+
+    public string Title { get; set; }
+    public string Author { get; set; }
+
+    public Book(string isbn, string title, string author)
+    {
+        this.isbn = isbn;
+        Title = title;
+        Author = author;
+    }
+
+    public string ISBN
+    {
+        get { return isbn; }
+    }
+
+    public void DisplayBookInfo()
+    {
+        Console.WriteLine("=== Информация о книге ===");
+        Console.WriteLine($"ISBN: {ISBN}");
+        Console.WriteLine($"Название: {Title}");
+        Console.WriteLine($"Автор: {Author}");
+        Console.WriteLine("===========================");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("=== Демонстрация всех классов ===\n");
+
+        Console.WriteLine("1. Класс Settings:");
+        Settings.DisplayConfigPath();
+        Console.WriteLine($"Через свойство: {Settings.ConfigFilePath}");
+        Console.WriteLine();
+
+        Console.WriteLine("2. Класс Calculator:");
+        Calculator.DisplayProgramInfo();
+        Console.WriteLine($"Прямой доступ к константам: Версия {Calculator.Version}, Разработчик {Calculator.DeveloperName}");
+        Console.WriteLine();
+
+        Console.WriteLine("3. Класс ObjectCounter:");
+        ObjectCounter.DisplayObjectCount();
+
+        Console.WriteLine("Создаем объекты:");
+        ObjectCounter obj1 = new ObjectCounter();
+        ObjectCounter obj2 = new ObjectCounter();
+        ObjectCounter obj3 = new ObjectCounter();
+
+        ObjectCounter.DisplayObjectCount();
+        Console.WriteLine($"Через свойство: {ObjectCounter.Count}");
+        Console.WriteLine();
+
+        Console.WriteLine("4. Класс Book:");
+        Book book1 = new Book("978-5-699-12014-7", "Мастер и Маргарита", "Михаил Булгаков");
+        Book book2 = new Book("978-5-17-087888-8", "Преступление и наказание", "Федор Достоевский");
+
+        book1.DisplayBookInfo();
+        book2.DisplayBookInfo();
+
+        Console.WriteLine("Изменяем название первой книги:");
+        book1.Title = "Мастер и Маргарита (полная версия)";
+        book1.DisplayBookInfo();
+
+        Console.WriteLine("\n=== Все демонстрации завершены ===");
+        Console.WriteLine("Нажмите Enter для выхода...");
+        Console.ReadLine();
+    }
+}
